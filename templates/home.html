@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2 class="fw-bold">Bem-vindo, {{ request.user.username }}!</h2>
+    <p class="text-muted">Selecione uma opção abaixo.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center p-4">
+                <div style="font-size: 3rem;">🚗</div>
+                <h5 class="card-title fw-bold mt-2">Veículos</h5>
+                <p class="card-text text-muted">Visualize todos os veículos cadastrados no sistema.</p>
+                <a href="{% url 'listar-veiculos' %}" class="btn btn-dark">Ver Veículos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

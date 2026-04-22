@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar veículo{% endblock %}
+
+{% block content %}
+<div class="vehicle-form-page">
+    <div class="vehicle-form-container">
+        <div class="vehicle-form-header">
+            <div>
+                <p class="vehicle-form-kicker">Edição</p>
+                <h1 class="vehicle-form-title">Editar veículo</h1>
+                <p class="vehicle-form-subtitle">
+                    Atualize as informações do veículo abaixo.
+                </p>
+            </div>
+
+            <a href="{% url 'listar-veiculos' %}" class="vehicle-form-back">
+                Voltar ao inventário
+            </a>
+        </div>
+
+        <div class="vehicle-form-layout">
+            <div class="vehicle-form-preview">
+                <div class="vehicle-form-preview-card">
+                    <div class="vehicle-form-preview-image-wrapper">
+                        {% if veiculo.foto %}
+                            <img src="{{ veiculo.foto.url }}" alt="{{ veiculo.modelo }}" class="vehicle-form-preview-image">
+                        {% else %}
+                            <div class="vehicle-form-preview-placeholder">
+                                Sem foto
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-preview-body">
+                        <h2>{{ veiculo.modelo }}</h2>
+                        <p>{{ veiculo.ano }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vehicle-form-panel">
+                <form method="post" enctype="multipart/form-data" class="vehicle-form-grid">
+                    {% csrf_token %}
+
+                    <div class="vehicle-form-field">
+                        <label for="{{ form.marca.id_for_label }}">Marca</label>
+                        {{ form.marca }}
+                        {% if form.marca.errors %}
+                            <div class="vehicle-form-error">{{ form.marca.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-field">
+                        <label for="{{ form.modelo.id_for_label }}">Modelo</label>
+                        {{ form.modelo }}
+                        {% if form.modelo.errors %}
+                            <div class="vehicle-form-error">{{ form.modelo.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-field">
+                        <label for="{{ form.ano.id_for_label }}">Ano</label>
+                        {{ form.ano }}
+                        {% if form.ano.errors %}
+                            <div class="vehicle-form-error">{{ form.ano.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-field">
+                        <label for="{{ form.cor.id_for_label }}">Cor</label>
+                        {{ form.cor }}
+                        {% if form.cor.errors %}
+                            <div class="vehicle-form-error">{{ form.cor.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-field">
+                        <label for="{{ form.combustivel.id_for_label }}">Combustível</label>
+                        {{ form.combustivel }}
+                        {% if form.combustivel.errors %}
+                            <div class="vehicle-form-error">{{ form.combustivel.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-field vehicle-form-field-full">
+                        <label for="{{ form.foto.id_for_label }}">Foto</label>
+                        {{ form.foto }}
+                        {% if form.foto.errors %}
+                            <div class="vehicle-form-error">{{ form.foto.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="vehicle-form-actions vehicle-form-field-full">
+                        <a href="{% url 'listar-veiculos' %}" class="vehicle-form-btn vehicle-form-btn-secondary">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="vehicle-form-btn vehicle-form-btn-primary">
+                            Salvar alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
