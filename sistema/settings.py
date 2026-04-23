@@ -15,6 +15,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'anuncios.apps.AnuncioConfig',
     'veiculo.apps.VeiculoConfig',
 ]
 
@@ -70,8 +72,24 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'sistema' / 'static']
 
-# Necessário para servir as fotos dos veículos
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = '/'
+
+# ──────────────────────────────────────────────
+# EMAIL
+# Em desenvolvimento: imprime o email no terminal
+# Para produção: troque por SMTP real 
+# ──────────────────────────────────────────────
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Para produção com Gmail, substitua o EMAIL_BACKEND acima por:
+#
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'seu@gmail.com'
+# EMAIL_HOST_PASSWORD = 'sua_senha_de_app'
+# DEFAULT_FROM_EMAIL = 'Midnight Fleet <seu@gmail.com>'
